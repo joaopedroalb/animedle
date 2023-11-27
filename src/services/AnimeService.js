@@ -45,7 +45,7 @@ const getAllAnime = async () => {
 
 const getAnimeById = async (idAnime) => {
   try {
-    const res = await fetch(process.env.BASE_FETCH_URL+`/anime-info-by-id?id=${idAnime}`)
+    const res = await fetch(process.env.NEXT_PUBLIC_FETCH_URL+`/anime-info-by-id?id=${idAnime}`)
     const data = await res.json()
   
     return data
@@ -71,7 +71,7 @@ const saveGuess = async (animeId, guessCount, guessType = 'daily', correctAnswer
   }
 
   try {
-    const res = await fetch(process.env.BASE_FETCH_URL+'/save-guess',{
+    const res = await fetch(process.env.NEXT_PUBLIC_FETCH_URL+'/save-guess',{
                               method: 'POST',
                               body: body
                             }) 
