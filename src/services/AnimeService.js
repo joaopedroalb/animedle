@@ -1,6 +1,6 @@
 
 const getDailyAnime = async () => {
-  const timeout = 9999
+  const timeout = 5000
   const controller = new AbortController()
   const timeoutId = setTimeout(() => controller.abort(), timeout)
   const options = {
@@ -30,7 +30,7 @@ const getDailyAnime = async () => {
 }
 
 const getAllAnime = async () => {
-  const timeout = 9999
+  const timeout = 5000
   const controller = new AbortController()
   const timeoutId = setTimeout(() => controller.abort(), timeout)
   const options = {
