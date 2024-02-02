@@ -1,7 +1,22 @@
 
 const getDailyAnime = async () => {
+  const timeout = 9999
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), timeout)
+  const options = {
+    method: 'GET',
+    signal: controller.signal,
+    cache: 'no-store'
+  }
+
   try {
-    const res = await fetch(process.env.BASE_FETCH_URL + '/daily', { cache: 'no-store' })
+    const res = await fetch(process.env.BASE_FETCH_URL + '/daily', options)
+    clearTimeout(timeoutId)
+
+    if (!res.ok) 
+      throw new Error(`Error: ${res.status} ${res.statusText}`);
+    
+
     const data = await res.json()
     return data
   } catch (err) {
@@ -15,9 +30,22 @@ const getDailyAnime = async () => {
 }
 
 const getAllAnime = async () => {
+  const timeout = 9999
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), timeout)
+  const options = {
+    method: 'GET',
+    signal: controller.signal,
+    cache: 'no-store'
+  }
+
   try {
-    const res = await fetch(process.env.BASE_FETCH_URL + '/anime-list', { cache: 'no-store' })
+    const res = await fetch(process.env.BASE_FETCH_URL + '/anime-list', options)
     const data = await res.json()
+    clearTimeout(timeoutId)
+
+    if (!res.ok) 
+      throw new Error(`Error: ${res.status} ${res.statusText}`);
 
     const SET_IDS = new Set()
 
